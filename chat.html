@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floating Chat UI</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f2f5;
+            height: 100vh;
+          
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 50px;
+            /* right: 5px; */
+            width: 320px;
+            height: 480px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 999;
+            margin: 0 0 0 40%;
+        }
+
+        .chat-header {
+            background-color: #0d47a1;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 12px;
+            background-color: #f7f9fc;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 16px;
+
+        }
+
+        .bot {
+            align-self: flex-start;
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            border-bottom-left-radius: 4px;
+        }
+
+        .user {
+            align-self: flex-end;
+            background-color: #0d47a1;
+            color: white;
+            border-bottom-right-radius: 4px;
+
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 12px;
+            background-color: white;
+            border-top: 1px solid #ccc;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px 14px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 999px;
+        }
+
+        .chat-input button {
+            background-color: #0d47a1;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            margin-left: 8px;
+            border-radius: 999px;
+            font-size: 14px;
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-widget">
+        <div class="chat-header">
+            💬 Live Chat
+        </div>
+        <div class="message" id="bot">Hi</div>
+        <div class="chat-messages" id="hlo">
+
+        </div>
+
+
+        <div class="chat-input">
+            <input type="text" placeholder="Type your message..." id="input">
+            <button type="submit" onclick="btn()">Send</button>
+        </div>
+    </div>
+
+</body>
+
+<script>
+      var newarray = [];
+    function btn() {
+        var hello = document.getElementById("input").value;
+        var details = {
+            msg: hello,
+            type: "send"
+        };
+        newarray.push(details);
+        console.log(newarray);
+
+
+        var reply = ""
+        if (hello == "Hello" || hello == "hello"||hello == "hlo"||hello == "Hlo") {
+            reply = "Hello,"+"&#9995;"+"How are you?"
+        }
+        else if (hello == "I am fine" || hello == "fine"||hello == "i am fine") {
+            reply = "Ok"+"&#128077;"+"Your name?"
+        }
+        else if (hello == "Bhargavi" || hello == "bhargavi") {
+            reply = "Where are you from?"+"&#128522;"
+        }
+        else if (hello == "I am from Anantapur" || hello == "Anantapur"|| hello == "anantapur"|| hello == "ATP") {
+            reply = "What are you doing?"+"&#128522;"
+        }
+        else if (hello == "Reading book" || hello == "I am reading books") {
+            reply = "Are you study or job?"+"&#128578;"
+        }
+        else if (hello == "I am studying" || hello == "study") {
+            reply = "Your collage"+"&#127979;"+" name?"
+        }
+        else if (hello == "Arts collage") {
+            reply = "What is your dream"+"&#129303;"+ "job?"
+        }
+        else if (hello == "Full stock developer" || hello=="Any job") {
+            reply = "What's your faverite"+"&#128523;" +"Fruit?"
+        }
+        else if (hello == "my faverite fruit is mango" || hello=="mango") {
+            reply = "Your faverite"+"&#128523;"+ "hero?"
+        }
+        else if (hello == "my faverite hero prabhas" || hello=="prabhas") {
+            reply = "What is the time?"+"&#128349;"
+        }
+        else if (hello == "Currently 3:30 PM" || hello=="3:30 PM") {
+            reply = "Have you eaten"+"&#127835;"+"yet?"
+        }
+        else if (hello == "yes, I have eaten already" || hello=="yes") {
+            reply = "Oh"+"&#128558;"+"ok"+"&#128077;"+"bye?"+"&#128075;"
+        }
+        else if (hello == "Ok bye" || hello=="bye") {
+            reply = "Bye"+"&#128075;"
+        }
+         else {
+            reply = "Not found this message!"
+        }
+        console.log(reply)
+        console.log(name)
+
+
+        var re_reply = {
+            msg: reply,
+            type: "Receive"
+        };
+        newarray.push(re_reply);
+        console.log(newarray);
+
+
+        var array = "";
+
+        for (i = 0; i < newarray.length; i++) {
+            if (newarray[i].type == "send") {
+                array += '<div class=\"message user\">' + newarray[i].msg + '</div>';
+            } else {
+                array += '<div class=\"message bot\">' + newarray[i].msg + '</div>';
+            }
+        }
+        console.log(array)
+        document.getElementById('hlo').innerHTML = array;
+
+    }
+
+</script>
+
+</html>
